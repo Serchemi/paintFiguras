@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuadrado</title>
+</head>
+<body>
+
+    <form action="">
+        <label > Elige que mostrar</label><br>
+        <select id="formas" onchange="selcI()">
+    
+            <option >Rectangulo</option>
+            <option >Circulo</option>
+            <option selected>Cuadrado</option>
+      
+        </select>
+        <br><br>
+        <label > Colores</label><br>
+        <input type="radio" name="color" id="rojo" value="CadetBlue" onclick="camiarColor('CadetBlue')" checked> CadetBlue <br>
+        <input type="radio" name="color" id="naranja" value="black"  onclick="camiarColor('black')"> Black <br>
+        <input type="radio" name="color" id="verde" value="green"  onclick="camiarColor('green')"> Green <br>
+
+        
+    </form>
+
+    <form action="">
+        <br><br>
+        <label for="">Lado</label><br>
+        <input type="text" id="lado"><br>
+>
+        
+
+        <div align="center" border="2px">
+            <canvas width="300" height="300" id="forma" style="border: 2px solid green"> </canvas>
+        </div>
+        <input type="button" value="Dibujar" onclick="addCir()" ><br><br>
+        
+    </form>
+    
+
+
+    <script>
+        let colorl="";
+        camiarColor('CadetBlue');
+        let lienzo=document.getElementById('forma');
+        let ctx=lienzo.getContext('2d');
+
+        function selcI() {
+            let nom=document.getElementById('formas');
+            let texto=nom.options[nom.selectedIndex].text;
+            
+            switch(texto){
+                case "Rectangulo":
+                    window.location.assign("file:///D:/Sem_9Tec/Web/unidad1/examen/index.html");
+                break
+                case "Circulo":
+                    window.location.assign("file:///D:/Sem_9Tec/Web/unidad1/examen/circulo.html");
+                break;
+            }
+        }
+
+           function addCir() {
+               let lado=document.getElementById('lado').value;
+                if(lado != ""){
+                    ctx.beginPath();
+                    ctx.fillStyle=colorl;
+		            ctx.fillRect(100,100,lado,lado);
+                    ctx.fill();
+                    ctx.closePath();
+                    document.getElementById('lado').value="";    
+               }else{
+                   alert("error, los campos estan vacias");
+               }
+           } 
+
+           function camiarColor(color) {
+                 colorl=color; 
+            }
+            
+           
+    </script>
+</body>
+</html>

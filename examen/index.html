@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rectangulo</title>
+</head>
+<body>
+
+    <form action="">
+        <label > Elige que mostrar</label><br>
+        <select id="formas" onchange="selcI()">
+    
+            <option >Rectangulo</option>
+            <option >Circulo</option>
+            <option >Cuadrado</option>
+      
+        </select>
+        <br><br>
+        <label > Colores</label><br>
+        <input type="radio" name="color" id="rojo" value="CadetBlue" onclick="camiarColor('CadetBlue')" checked> CadetBlue <br>
+        <input type="radio" name="color" id="naranja" value="black"  onclick="camiarColor('black')"> Black <br>
+        <input type="radio" name="color" id="verde" value="green"  onclick="camiarColor('green')"> Green <br>
+
+        
+    </form>
+
+    <form action="" >
+        <br><br>
+        <label for="">Ancho</label><br>
+        <input type="text" id="ancho"><br>
+        <label for="">Alto</label><br>
+        <input type="text" id="alto"> <br>
+
+        <div align="center" style="border: 2px;">
+            <canvas width="300" height="300" id="forma" style="border: 2px solid green"> </canvas>
+        </div>
+        <input type="button" value="Dibujar" onclick="addRect('CadetBlue')" ><br><br>
+        
+    </form>
+    
+
+
+    <script>
+        let colorl="";
+        camiarColor('CadetBlue');
+        let lienzo=document.getElementById('forma');
+        let ctx=lienzo.getContext('2d');
+
+        
+        function selcI() {
+            let nom=document.getElementById('formas');
+            let texto=nom.options[nom.selectedIndex].text;
+            
+            switch(texto){
+                case "Circulo":
+                    window.location.assign("file:///D:/Sem_9Tec/Web/unidad1/examen/circulo.html");
+                break;
+                case "Cuadrado":
+                    window.location.assign("file:///D:/Sem_9Tec/Web/unidad1/examen/cuadrado.html");
+                break;
+            }
+        }
+
+           function addRect() {
+                let ancho=document.getElementById('ancho').value;
+               let alto=document.getElementById('alto').value;
+               if(ancho != "" & alto !=""){
+                    ctx.beginPath();
+                    ctx.fillStyle=colorl;
+		            ctx.strokeStyle='white';
+                    ctx.fillRect(100,100,ancho,alto);
+                    ctx.fill();
+                    ctx.closePath();
+                    document.getElementById('ancho').value="";
+                    document.getElementById('alto').value="";
+                    
+               }else{
+                   alert("error, los campos estan vacias");
+               }
+               
+           } 
+
+           function camiarColor(color) {
+
+                 colorl=color; 
+
+            }
+            
+           
+    </script>
+    
+</body>
+</html>
